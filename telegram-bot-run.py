@@ -26,8 +26,10 @@ Send me your password to cross check it over the <a href='https://xposedornot.co
 '''
     else:
         count, wordlist = check_password(message)
-        if count!=None:
-            reply = f"How many times it has been repeated in password breaches: {count}"
+        if count != 0:
+            reply = f"Your password has been repeated in password breaches this many times: {count}"
+        else:
+            reply = "Your password is potentially safe."
     return reply
     
 def handle_message(chat_id, message_info):
