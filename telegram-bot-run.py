@@ -5,6 +5,8 @@ from telegram_bot_api import parse_message, \
                                 send_message, \
                                 deleteMessage, \
                                 editMessageText
+from xposedornot_api import check_password
+
 from credentials import config
 
 token = config.TG_BOT_TOKEN
@@ -18,9 +20,14 @@ def manage_messages(msg):
         handle_message(chat_id, message_info)
         
 def handle_commands(message):
-    reply = 'send /start to start the bot.'
     if message == '/start':
-        reply = 'Hello!'
+        reply = ''' Hey,
+Send me your password to cross check it over the <a href='https://xposedornot.com/'><b>xposedornot.com</b></a> dataset to check whether your password has been already exposed.
+'''
+    else:
+        count, wordlist = check_password(message)
+        if count!=None:
+            reply = f"How many times it has been repeated in password breaches: {count}"
     return reply
     
 def handle_message(chat_id, message_info):
