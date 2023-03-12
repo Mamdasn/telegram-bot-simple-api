@@ -15,5 +15,5 @@ def check_password(password):
             wordlist = message.get('SearchPassAnon').get('wordlist')
             return count, wordlist 
         else:
-            return None, None
+            return 0, 0
 
